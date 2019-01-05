@@ -8,6 +8,6 @@ document.addEventListener("DOMContentLoaded", getQuotes);
 function getQuotes() {
   http
     .get("http://localhost:3000/quotes")
-    .then(data => console.log(data))
+    .then(data => ui.showQuotes(data))
     .catch(err => console.log(err));
 }
