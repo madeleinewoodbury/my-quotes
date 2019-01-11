@@ -55,13 +55,19 @@ class UI {
     }, 3000);
   }
 
-  // Clear all input fields
+  // Clear Alert Message
   clearAlert() {
     // Check if there is an alert
     if (document.querySelector(".alert")) {
       // remove alert
       document.querySelector(".alert").remove();
     }
+  }
+
+  // Clera All Input Fields
+  clearFields() {
+    document.querySelector("#title").value = "";
+    document.querySelector("#body").value = "";
   }
 }
 

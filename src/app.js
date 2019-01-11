@@ -45,7 +45,7 @@ function addQuotes() {
         .post("http://localhost:3000/quotes", data)
         .then(data => {
           ui.showAlert("Quote Added", "alert alert-success");
-          // ui.changeFormState
+          ui.clearFields();
           getQuotes();
         })
         .catch(err => console.log(err));
