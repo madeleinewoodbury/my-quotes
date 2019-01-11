@@ -8,6 +8,7 @@ class UI {
     this.forState = "add";
   }
 
+  // Show all quotes
   showQuotes(quotes) {
     let output = "";
 
@@ -29,6 +30,38 @@ class UI {
 
       this.quote.innerHTML = output;
     });
+  }
+
+  // Show alert message
+  showAlert(message, className) {
+    this.clearAlert();
+
+    // Create div
+    const div = document.createElement("div");
+    // Add classes
+    div.className = className;
+    // Add text
+    div.appendChild(document.createTextNode(message));
+    // Get the parent element
+    const container = document.querySelector(".quote-container");
+    // Get quotes
+    const quotes = document.querySelector("#quotes");
+    // Insert div
+    container.insertBefore(div, quotes);
+
+    // Timeout for alert message to disappear
+    setTimeout(() => {
+      this.clearAlert();
+    }, 3000);
+  }
+
+  // Clear all input fields
+  clearAlert() {
+    // Check if there is an alert
+    if (document.querySelector(".alert")) {
+      // remove alert
+      document.querySelector(".alert").remove();
+    }
   }
 }
 

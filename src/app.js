@@ -36,7 +36,7 @@ function addQuotes() {
 
   // Validate input
   if (title === "" || body === "") {
-    console.log("Empty");
+    ui.showAlert("Please fill in all fields", "alert alert-danger");
   } else {
     // Check for hidden id
     if (id === "") {
@@ -44,7 +44,7 @@ function addQuotes() {
       http
         .post("http://localhost:3000/quotes", data)
         .then(data => {
-          // ui.showAlert
+          ui.showAlert("Quote Added", "alert alert-success");
           // ui.changeFormState
           getQuotes();
         })
