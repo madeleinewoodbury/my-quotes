@@ -9,8 +9,10 @@ import { http } from "./http";
 document.addEventListener("DOMContentLoaded", getQuotes);
 // Listen for add quote
 document.querySelector(".quote-submit").addEventListener("click", addQuotes);
-// Listen for delete quote
+// Listen for delete
 document.querySelector("#quotes").addEventListener("click", deleteQuote);
+// Listen for edit
+document.querySelector("#quotes").addEventListener("click", editQuote);
 
 //
 // FUNCTIONS
@@ -52,6 +54,29 @@ function addQuotes() {
         .catch(err => console.log(err));
     }
   }
+}
+
+// Edit Quote
+function editQuote(e) {
+  if (e.target.parentElement.classList.contains("edit")) {
+    // Get the quote data
+    const id = e.target.parentElement.dataset.id;
+    const title =
+      e.target.parentElement.previousElementSibling.previousElementSibling
+        .textContent;
+    const body = e.target.parentElement.previousElementSibling.textContent;
+
+    const data = {
+      id,
+      title,
+      body
+    };
+
+    // Fill form with current data
+    ui.fillForm(data);
+  }
+
+  e.preventDefault();
 }
 
 // Delete Quote
