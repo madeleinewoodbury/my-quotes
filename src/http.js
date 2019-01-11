@@ -20,6 +20,19 @@ class HTTP {
     const resData = await res.json();
     return resData;
   }
+
+  // Make an HTTP Delete Request
+  async delete(url) {
+    const res = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json"
+      }
+    });
+
+    const resData = await "Resource Deleted";
+    return resData;
+  }
 }
 
 export const http = new HTTP();

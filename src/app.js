@@ -7,9 +7,10 @@ import { http } from "./http";
 
 // Load all quotes in db on DOM load
 document.addEventListener("DOMContentLoaded", getQuotes);
-
 // Listen for add quote
 document.querySelector(".quote-submit").addEventListener("click", addQuotes);
+// Listen for delete quote
+document.querySelector("#quotes").addEventListener("click", deleteQuote);
 
 //
 // FUNCTIONS
@@ -51,4 +52,24 @@ function addQuotes() {
         .catch(err => console.log(err));
     }
   }
+}
+
+// Delete Quote
+function deleteQuote(e) {
+  if (e.target.parentElement.classList.contains("delete")) {
+    // Get the id of the quote to delete
+    const id = e.target.parentElement.dataset.id;
+    // Display confirm message to the user
+    if (confirm("Are you sure you want to delete this quote?")) {
+      http
+        .delete(`http://localhost:3000/quotes/${id}`)
+        .then(data => {
+          ui.showAlert("Quote was deleted", "alert alert-success");
+          getQuotes();
+        })
+        .catch(err => console.log(err));
+    }
+  }
+
+  e.preventDefault();
 }
