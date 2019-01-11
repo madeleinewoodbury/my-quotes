@@ -52,6 +52,16 @@ function addQuotes() {
           getQuotes();
         })
         .catch(err => console.log(err));
+    } else {
+      // Update quote
+      http
+        .put(`http://localhost:3000/quotes/${id}`, data)
+        .then(data => {
+          ui.showAlert("Quote Updated", "alert alert-success");
+          ui.changeFormState("add");
+          getQuotes();
+        })
+        .catch(err => console.log(err));
     }
   }
 }

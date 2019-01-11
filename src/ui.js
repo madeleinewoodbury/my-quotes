@@ -4,8 +4,7 @@ class UI {
     this.titleInput = document.querySelector("#title");
     this.bodyInput = document.querySelector("#body");
     this.idInput = document.querySelector("#id");
-    this.postSubmit = document.querySelector(".quote-submit");
-    this.forState = "add";
+    this.quoteSubmit = document.querySelector(".quote-submit");
   }
 
   // Show all quotes
@@ -75,6 +74,47 @@ class UI {
     this.titleInput.value = data.title;
     this.bodyInput.value = data.body;
     this.idInput.value = data.id;
+
+    this.changeFormState("edit");
+  }
+
+  // Clear ID hidden value
+  clearIdInput() {
+    this.idInput.value = "";
+  }
+
+  // Change form state
+  changeFormState(type) {
+    if (type === "edit") {
+      // Change submit button's color and text
+      this.quoteSubmit.textContent = "Update Quote";
+      this.quoteSubmit.className = "quote-submit btn btn-warning btn-block";
+
+      // Create cancel button
+      const cancelBtn = document.createElement("button");
+      cancelBtn.className = "quote-cancel btn btn-light btn-block";
+      cancelBtn.appendChild(document.createTextNode("Cancel Edit"));
+      // Get the parent element
+      const cardForm = document.querySelector(".card-form");
+      // Get the element to insert before
+      const formEnd = document.querySelector(".form-end");
+      // Insert cancel button
+      cardForm.insertBefore(cancelBtn, formEnd);
+    } else {
+      // Change submit button's color and text
+      this.quoteSubmit.textContent = "Quote It";
+      this.quoteSubmit.className = "quote-submit btn btn-primary btn-block";
+
+      // Remove cancel button if it's there
+      if (document.querySelector(".quote-cancel")) {
+        document.querySelector(".quote-cancel").remove();
+      }
+
+      // Clear id from hidden field
+      this.clearIdInput();
+      // Clear input fields
+      this.clearFields();
+    }
   }
 }
 
