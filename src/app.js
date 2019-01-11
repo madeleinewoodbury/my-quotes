@@ -13,6 +13,8 @@ document.querySelector(".quote-submit").addEventListener("click", addQuotes);
 document.querySelector("#quotes").addEventListener("click", deleteQuote);
 // Listen for edit
 document.querySelector("#quotes").addEventListener("click", editQuote);
+// Listen for cancel edit
+document.querySelector(".card-form").addEventListener("click", cancelEdit);
 
 //
 // FUNCTIONS
@@ -86,6 +88,14 @@ function editQuote(e) {
     ui.fillForm(data);
   }
 
+  e.preventDefault();
+}
+
+// Cancel Edit
+function cancelEdit(e) {
+  if (e.target.classList.contains("quote-cancel")) {
+    ui.changeFormState("add");
+  }
   e.preventDefault();
 }
 
